@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.TimeUnit;
 
 
-public class HomeWork4Selenium {
-    private Logger log = LogManager.getLogger(HomeWork4Selenium.class);
+public class HomeWork4SeleniumTest {
+    private Logger log = LogManager.getLogger(HomeWork4SeleniumTest.class);
     private WebDriver driver;  //драйвер должен быть НЕСТАТИЧНЫЙ - если будет несколько потоков, то сессии вебдрайвера сломаются
 
     @BeforeEach
@@ -20,6 +20,7 @@ public class HomeWork4Selenium {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-fullscreen");
+        chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5000,
                 TimeUnit.MILLISECONDS);
