@@ -23,8 +23,8 @@ import java.util.function.Predicate;
 public class HomeWork4SeleniumTest {
     private Logger log = LogManager.getLogger(HomeWork4SeleniumTest.class);
     WebDriver driver;
-    private String login = "ceyogo9446@bitvoo.com";
-    private String pas = "Ceyogo9446!";
+    private final String login = "ceyogo9446@bitvoo.com";
+    private final String pas = "Ceyogo9446!";
 
     @BeforeEach
     public void setUp() {
