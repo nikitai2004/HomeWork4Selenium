@@ -99,7 +99,7 @@ public class HomeWork4SeleniumTest {
         driver.get("https://otus.ru");
         loginInOtus();
         Set<Cookie> cookies = driver.manage().getCookies();
-        log.info("Coocies:");
+        log.info("Cookies:");
         log.info(cookies);
     }
 
