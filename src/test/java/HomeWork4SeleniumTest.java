@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 
 public class HomeWork4SeleniumTest {
-    private Logger log = LogManager.getLogger(HomeWork4SeleniumTest.class);
+    private final Logger log = LogManager.getLogger(HomeWork4SeleniumTest.class);
     WebDriver driver;
     private final String login = "ceyogo9446@bitvoo.com";
     private final String pas = "Ceyogo9446!";
