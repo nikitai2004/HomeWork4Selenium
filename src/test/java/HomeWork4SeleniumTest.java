@@ -114,4 +114,5 @@ public class HomeWork4SeleniumTest {
         driver.findElement(by).clear();
         driver.findElement(by).sendKeys(text);
     }
+
 }
