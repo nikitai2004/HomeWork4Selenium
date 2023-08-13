@@ -22,12 +22,12 @@ import java.util.function.Predicate;
 
 public class HomeWork4SeleniumTest {
     private final Logger log = LogManager.getLogger(HomeWork4SeleniumTest.class);
-    WebDriver driver;
+    private WebDriver driver;
     private final String login = "ceyogo9446@bitvoo.com";
     private final String pas = "Ceyogo9446!";
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         WebDriverManager.chromedriver().setup();
     }
 
@@ -41,7 +41,7 @@ public class HomeWork4SeleniumTest {
     }
 
     @Test
-    public void test01() {
+    public void testOpenHeadlessChromeOtus () {
         ChromeOptions chromeOptions01 = new ChromeOptions();
         chromeOptions01.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions01);
@@ -51,9 +51,9 @@ public class HomeWork4SeleniumTest {
         WebElement element1 = driver.findElement(By.cssSelector("input.searchbox_input__bEGm3"));
         element1.sendKeys("ОТУС");
         element1.sendKeys(Keys.ENTER);
-        // Сохраним HTML страницу в лог, зачем-то мы его сделали же
+        // Сохраним HTML страницу в лог
         // log.info(driver.getPageSource());
-        // И сделаем скриншот, чтобы понять почему селекторы не работают
+        // И сделаем скриншот
         // Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
         // ImageIO.write(screenshot.getImage(), "jpg", new File("c:\\111\\ElementScreenshot.jpg"));
         WebElement element2 = driver.findElement(By.cssSelector("h2 a[href=\"https://otus.ru/\"]"));
@@ -64,7 +64,7 @@ public class HomeWork4SeleniumTest {
     }
 
     @Test
-    public void test02() {
+    public void openChromeKioskModeAndCHechImg() {
         ChromeOptions chromeOptions02 = new ChromeOptions();
         chromeOptions02.addArguments("—kiosk");
         driver = new ChromeDriver(chromeOptions02);
@@ -90,7 +90,7 @@ public class HomeWork4SeleniumTest {
     }
 
     @Test
-    public void test03() {
+    public void openChromeFullScreenAuthOtusAndLogCookies() {
         ChromeOptions chromeOptions03 = new ChromeOptions();
         chromeOptions03.addArguments("--start-fullscreen");
         driver = new ChromeDriver(chromeOptions03);
@@ -115,30 +115,3 @@ public class HomeWork4SeleniumTest {
         driver.findElement(by).sendKeys(text);
     }
 }
-
-
-//        Описание/Пошаговая инструкция выполнения домашнего задания:
-//
-//        1)
-//
-//        Открыть Chrome в headless режиме
-//        Перейти на https://duckduckgo.com/
-//        В поисковую строку ввести ОТУС
-//        Проверить что в поисковой выдаче
-//        первый результат
-//        Онлайн‑курсы для профессионалов, дистанционное обучение
-//
-//        2)
-//
-//        Открыть Chrome в режиме киоска
-//        Перейти на https://demo.w3layouts.com/demos_new/template_demo/03-10-2020/photoflash-liberty-demo_Free/685659620/web/index.html?_ga=2.181802926.889871791.1632394818-2083132868.1632394818
-//        Нажать на любую картинку
-//        Проверить что картинка открылась в модальном окне
-//
-//        3)
-//
-//        Открыть Chrome в режиме полного экрана
-//        Перейти на https://otus.ru
-//        Авторизоваться под каким-нибудь тестовым пользователем(можно создать нового)
-//        Вывести в лог все cookie
-
