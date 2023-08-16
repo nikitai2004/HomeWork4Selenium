@@ -41,7 +41,7 @@ public class HomeWork4SeleniumTest {
     }
 
     @Test
-    public void testOpenHeadlessChromeOtus () {
+    public void testOpenHeadlessChromeOtus() {
         ChromeOptions chromeOptions01 = new ChromeOptions();
         chromeOptions01.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions01);
@@ -64,29 +64,29 @@ public class HomeWork4SeleniumTest {
     }
 
     @Test
-    public void openChromeKioskModeAndCHechImg() {
+    public void openChromeKioskModeAndCheckImg() {
         ChromeOptions chromeOptions02 = new ChromeOptions();
         chromeOptions02.addArguments("—kiosk");
         driver = new ChromeDriver(chromeOptions02);
         log.info("Драйвер 02 kiosk ChromeDriver starting");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://demo.w3layouts.com/demos_new/template_demo/03-10-2020/photoflash-liberty-demo_Free/685659620/web/index.html?_ga=2.181802926.889871791.1632394818-2083132868.1632394818");
+        driver.get("https://otus.home.kartushin.su/lesson/index.htm");
+
+        // Через ожидания проверяем загрузку страницы
+        WebElement element02 = driver.findElement(By.xpath("(//img[@alt='portfolio-img'])[1]"));
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOf(element02));
+
+        // Проверяем, что НЕ открылось модальное окно
+        Assertions.assertNotEquals(driver.getPageSource(), "pp_overlay");
         // Кликаем с помощью JS
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement element02 = driver.findElement(By.cssSelector("ul>li:first-child>span>a>IMG[class=\"img-fluid w3layouts agileits\"]"));
         js.executeScript("arguments[0].click();", element02);
-        // Находим само изображение
-        WebElement element03 = driver.findElement(By.cssSelector("img[id=\"fullResImage\"]"));
-        // И ждем пока оно загрузится
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.visibilityOf(element03));
-        // Для проверки загрузки - получаем, логируем и проверяем размеры картинки
-        // Если картинки нет - то размер изображения 0 или размер замещающей иконки будет менее 200 точек (предполагаем)
-        log.info("Размеры картинки: ");
-        log.info(driver.findElement(By.cssSelector("img[id=\"fullResImage\"]")).getSize().getHeight());
-        log.info(driver.findElement(By.cssSelector("img[id=\"fullResImage\"]")).getSize().getWidth());
-        // Для проверки работы Assertions можно отключить явное ожидание в 81,82 стр
-        Assertions.assertTrue((driver.findElement(By.cssSelector("img[id=\"fullResImage\"]")).getSize().getHeight() > 200) & (driver.findElement(By.cssSelector("img[id=\"fullResImage\"]")).getSize().getWidth() > 200));
+
+        //Проверяем, что открылось модальное окно
+        WebElement element03 = driver.findElement(By.cssSelector(".pp_overlay"));
+        WebDriverWait wait1 = new WebDriverWait(driver, 5);
+        wait1.until(ExpectedConditions.visibilityOf(element03));
     }
 
     @Test
@@ -114,5 +114,4 @@ public class HomeWork4SeleniumTest {
         driver.findElement(by).clear();
         driver.findElement(by).sendKeys(text);
     }
-
 }
